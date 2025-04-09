@@ -52,9 +52,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
+- [x] **HTML pages** - Created three html pages for each part of the application. Home page to login/create account, vote page to select the stocks you want to vote for, and scoreboard to see which stocks have the most votes.
+- [x] **Proper HTML element usage** - I use proper HTML tags, attributes, etc.
+- [x] **Links** - Links between the application pages. Link to my github repo in the footer.
 - [ ] **Text** - I did not complete this part of the deliverable.
 - [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
 - [ ] **Images** - I did not complete this part of the deliverable.
