@@ -60,7 +60,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] **Images** - I did not complete this part of the deliverable.
 - [x] **Login placeholder** - Index.html has a placeholder for the login functionality.
 - [x] **DB data placeholder** - Login and register will utilize the database, also number of votes and who voted for each stock.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] **WebSocket placeholder** - Scoreboard has placeholder values for the number of votes per stock. Later will update live.
 
 ## 🚀 CSS deliverable
 
