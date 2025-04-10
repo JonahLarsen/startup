@@ -55,9 +55,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **HTML pages** - Created three html pages for each part of the application. Home page to login/create account, vote page to select the stocks you want to vote for, and scoreboard to see which stocks have the most votes.
 - [x] **Proper HTML element usage** - I use proper HTML tags, attributes, etc.
 - [x] **Links** - Links between the application pages. Link to my github repo in the footer.
-- [ ] **Text** - I did not complete this part of the deliverable.
+- [x] **Text** - Text in the headers and footers and in the vote.html page.
 - [x] **3rd party API placeholder** - Scoreboard has images as placeholders. Later will show the live stock price.
-- [ ] **Images** - I did not complete this part of the deliverable.
+- [x] **Images** - Images being used on the scoreboard.
 - [x] **Login placeholder** - Index.html has a placeholder for the login functionality.
 - [x] **DB data placeholder** - Login and register will utilize the database, also number of votes and who voted for each stock.
 - [x] **WebSocket placeholder** - Scoreboard has placeholder values for the number of votes per stock. Later will update live.
