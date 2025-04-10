@@ -58,8 +58,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] **Text** - I did not complete this part of the deliverable.
 - [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
 - [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
+- [x] **Login placeholder** - Index.html has a placeholder for the login functionality.
+- [x] **DB data placeholder** - Login and register will utilize the database, also number of votes and who voted for each stock.
 - [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
 
 ## 🚀 CSS deliverable
