@@ -56,7 +56,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Proper HTML element usage** - I use proper HTML tags, attributes, etc.
 - [x] **Links** - Links between the application pages. Link to my github repo in the footer.
 - [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
+- [x] **3rd party API placeholder** - Scoreboard has images as placeholders. Later will show the live stock price.
 - [ ] **Images** - I did not complete this part of the deliverable.
 - [x] **Login placeholder** - Index.html has a placeholder for the login functionality.
 - [x] **DB data placeholder** - Login and register will utilize the database, also number of votes and who voted for each stock.
