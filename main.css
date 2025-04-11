@@ -1,0 +1,21 @@
+body {
+    display: flex;
+    flex-direction: column;
+
+}
+
+header {
+    flex: 0 100px;
+    color: navy;
+}
+
+footer {
+    flex: 0 60px;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
