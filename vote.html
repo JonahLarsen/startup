@@ -25,23 +25,26 @@
     
         <main>
             <h2>Place your votes and then submit</h2>
-            <p>Visit the scoreboard page to see which stocks are the favorites amongst all users. 
-                Will your favorite reach the top?
+            <h3>Visit the scoreboard page to see which stocks are the favorites amongst all users. 
+                Will your favorite reach the top?</h3>
             </p>
             <form action="vote.html">
-                <div>
-                    <label for="Apple">Apple:</label>
-                    <input type="checkbox" name="Apple" id="Apple">
+                <div class="votes">
+                    <div>
+                        <label for="Apple">Apple</label>
+                        <input type="checkbox" name="Apple" id="Apple">
+                    </div>
+                    <div>
+                        <label for="Google">Google</label>
+                        <input type="checkbox" name="Google" id="Google">
+                    </div>
+                    <div>
+                        <label for="Meta">Meta</label>
+                        <input type="checkbox" name="Meta" id="Meta">
+                    </div>
+                    <div>
                 </div>
-                <div>
-                    <label for="Google">Google:</label>
-                    <input type="checkbox" name="Google" id="Google">
-                </div>
-                <div>
-                    <label for="Meta">Meta:</label>
-                    <input type="checkbox" name="Meta" id="Meta">
-                </div>
-                <div>
+                
                     <button type="submit">Submit Votes</button>
                 </div>
             </form>
