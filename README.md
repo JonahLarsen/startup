@@ -66,12 +66,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Header, footer, and main content body** - I did not complete this part of the deliverable.
-- [x] **Navigation elements** - I did not complete this part of the deliverable.
+- [x] **Header, footer, and main content body** - Matching color theme, nice looking styles.
+- [x] **Navigation elements** - Navigation elements float in the header and look nice and matching.
 - [x] **Responsive to window resizing** - Works on various screen sizes and moves elements to fit.
-- [ ] **Application elements** - I did not complete this part of the deliverable.
+- [x] **Application elements** - Good matching theme and easy to look at and use.
 - [x] **Application text content** - Text uses a sans-serif font and navy/white colors.
-- [ ] **Application images** - I did not complete this part of the deliverable.
+- [x] **Application images** - Images on scoreboard are rounded and have a border for a unique look that fits into the app.
 
 ## 🚀 React part 1: Routing deliverable
 
