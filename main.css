@@ -73,6 +73,16 @@ button {
     font-size: medium;
     margin-top: 5px;
     color:navy;
+    border-radius: 15px;
 }
 
-
+input {
+    width: 200px;
+    height: 20px;
+    font-size: medium;
+    background-color: white;
+    border-color: navy;
+    margin-top: 5px;
+    border-radius: 15px;
+    text-align: center;
+}
