@@ -1,12 +1,14 @@
 body {
     display: flex;
     flex-direction: column;
-
+    font-family: sans-serif;
 }
 
 header {
-    flex: 0 100px;
+    flex: 0 40px;
     color: navy;
+    background-color: lightgray;
+    list-style-type: none;
 }
 
 footer {
@@ -14,7 +16,6 @@ footer {
 }
 
 main {
-    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
