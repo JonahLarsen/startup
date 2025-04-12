@@ -1,3 +1,7 @@
+html {
+    height: 100%;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -33,10 +37,9 @@ menu > a {
 }
 
 footer {
-    flex: 0 50px;
+    flex: 0 80px;
     color: navy;
     background-color: lightgray;
-    list-style-type: none;
     display: flex;
     flex-direction: column;
     align-items: center;
