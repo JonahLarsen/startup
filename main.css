@@ -47,11 +47,15 @@ footer {
     align-items: center;
     justify-items: center;
     padding-bottom: 8px;
+    bottom: 0;
 }
 
 main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 50px;
+    justify-content:flex-start;
     flex: 1;
+    margin-bottom: 20px;
 }
