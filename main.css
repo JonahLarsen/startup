@@ -9,6 +9,10 @@ header {
     color: navy;
     background-color: lightgray;
     list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-items: center;
 }
 
 footer {
