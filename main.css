@@ -66,3 +66,13 @@ main {
 h2 {
     text-decoration: underline;
 }
+
+button {
+    background-color: white;
+    border-color: navy;
+    font-size: medium;
+    margin-top: 5px;
+    color:navy;
+}
+
+
