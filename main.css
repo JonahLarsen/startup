@@ -58,4 +58,11 @@ main {
     justify-content:flex-start;
     flex: 1;
     margin-bottom: 20px;
+    background-color: gray;
+    margin: 0;
+    color:white;
+}
+
+h2 {
+    text-decoration: underline;
 }
