@@ -11,6 +11,8 @@ body {
 }
 
 header {
+    top:0;
+    position:sticky;
     flex: 0 40px;
     color: navy;
     background-color: lightgray;
