@@ -1,8 +1,9 @@
 .VoteCount {
     display: inline-block;
     text-align: right;
-    width: 75%;
+    width: 60%;
     margin: 0;
+    font-size: x-large;
 }
 
 img {
@@ -14,9 +15,11 @@ img {
 }
 
 .StockName {
-    width: 22%;
+    width: 30%;
     display: inline-block;
     margin: 0;
+    font-size: x-large;
+    text-decoration: underline;
 }
 
 .stocks {
