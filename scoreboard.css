@@ -1,0 +1,25 @@
+.VoteCount {
+    display: inline-block;
+    text-align: right;
+    width: 75%;
+    margin: 0;
+}
+
+img {
+    margin-top: 5px;
+    border-radius: 15px;
+    border-color: navy;
+    border-style: solid;
+    border-width: 4px;
+}
+
+.StockName {
+    width: 22%;
+    display: inline-block;
+    margin: 0;
+}
+
+.stocks {
+    display: flex;
+    flex-direction: column;
+}
