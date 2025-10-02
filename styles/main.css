@@ -18,3 +18,20 @@ header {
     align-items: center;
     justify-items: center;
 }
+
+h1 {
+    padding-left: 10px;
+}
+
+.navbar {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar_item {
+    margin: 5px;
+        text-decoration: none;
+        color:navy;
+        font-size: large;
+}
