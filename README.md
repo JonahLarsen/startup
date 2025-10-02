@@ -28,6 +28,7 @@ Have you ever wanted a simple online service that would allow you to play Tic Ta
 - Players can play online Tic Tac Toe games against others.
 - People can create accounts and can track their wins and losses in Tic Tac Toe games.
 - Each player's moves will be updated in real time so that they can see the moves of the other person as they happen.
+- Third party API: OpenAI. Ask chatGPT what the best next move would be.
 
 ### Technologies
 
@@ -44,16 +45,16 @@ I am going to use the required technologies in the following ways.
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [x] **Server deployed and accessible with custom domain name** - [My server link](https://yourdomainnamehere.click). 
+- [x] **Server deployed and accessible with custom domain name** - [My server link](https://jonahlarsen.click). 
 
 ## 🚀 HTML deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
+- [x] **HTML pages** - I did not complete this part of the deliverable.
+- [x] **Proper HTML element usage** - I did not complete this part of the deliverable.
+- [x] **Links** - I did not complete this part of the deliverable.
+- [x] **Text** - I did not complete this part of the deliverable.
 - [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
 - [ ] **Images** - I did not complete this part of the deliverable.
 - [ ] **Login placeholder** - I did not complete this part of the deliverable.
