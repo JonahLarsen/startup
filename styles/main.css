@@ -76,11 +76,16 @@ button {
 }
 
 @media (max-height: 800px) {
-  
   footer {
     display: none;
   }
   main {
     flex: 1 100vh;
+  }
+}
+
+@media (max-width: 400px) {
+    .navbar {
+    display: block;
   }
 }
