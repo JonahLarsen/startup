@@ -51,12 +51,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [x] **HTML pages** - I did not complete this part of the deliverable.
-- [x] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [x] **Links** - I did not complete this part of the deliverable.
-- [x] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
+- [x] **HTML pages** - Main page where you play the game, login page, and page where you can see all games and record
+- [x] **Proper HTML element usage** - I used proper elements to structure and organize the page.
+- [x] **Links** - links to each of the other pages.
+- [x] **Text** - there is text throughout the page for all of the usernames, game info, instructions, etc.
+- [ ] **3rd party API placeholder** - Fake button to send request to OpenAI api.
+- [ ] **Images** - Image for placeholder for tic tac toe and for 
 - [ ] **Login placeholder** - I did not complete this part of the deliverable.
 - [ ] **DB data placeholder** - I did not complete this part of the deliverable.
 - [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
