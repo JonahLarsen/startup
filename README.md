@@ -55,11 +55,11 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Proper HTML element usage** - I used proper elements to structure and organize the page.
 - [x] **Links** - links to each of the other pages.
 - [x] **Text** - there is text throughout the page for all of the usernames, game info, instructions, etc.
-- [ ] **3rd party API placeholder** - Fake button to send request to OpenAI api.
-- [ ] **Images** - Image for placeholder for tic tac toe and for 
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] **3rd party API placeholder** - Fake button to send request to OpenAI api.
+- [x] **Images** - Image for placeholder for tic tac toe and for W/L Ratio.
+- [x] **Login placeholder** - Login page with username and password fields.
+- [x] **DB data placeholder** - Data about games and user's wins/losses.
+- [x] **WebSocket placeholder** - Automatically updated when each user takes their turn by updating game and updating whose turn it is.
 
 ## 🚀 CSS deliverable
 
