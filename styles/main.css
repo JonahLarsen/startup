@@ -39,3 +39,37 @@ h1 {
 .active {
     text-decoration: underline;
 }
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    justify-content:flex-start;
+    flex: 1;
+    margin-bottom: 20px;
+    background-color: gray;
+    margin: 0;
+    color:white;
+}
+
+footer {
+    flex: 0 80px;
+    color: navy;
+    background-color: lightgray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    padding-bottom: 8px;
+    bottom: 0;
+}
+
+button {
+    background-color: white;
+    border-color: navy;
+    font-size: medium;
+    margin-top: 5px;
+    color:navy;
+    border-radius: 15px;
+}
