@@ -74,3 +74,13 @@ button {
     color:navy;
     border-radius: 15px;
 }
+
+@media (max-height: 800px) {
+  
+  footer {
+    display: none;
+  }
+  main {
+    flex: 1 100vh;
+  }
+}
