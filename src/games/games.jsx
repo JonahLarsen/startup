@@ -36,7 +36,7 @@ export function Games() {
             <span>Wins: 5</span><br/>
             <span>Losses: 3</span><br/>
             <span>W/L Ratio: 1.67 </span><br/>
-            <div className="image_div"><img src="img/positive_record.png" alt="Image of a green plus sign to indicate a strong W/L Ratio"/></div>
+            <div className="image_div"><img className="gameImg" src="img/positive_record.png" alt="Image of a green plus sign to indicate a strong W/L Ratio"/></div>
         </main>
     )
 }
