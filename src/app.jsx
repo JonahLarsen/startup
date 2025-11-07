@@ -1,21 +1,30 @@
 import React from 'react';
+import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import { Login } from './login/login';
+import { Games } from './games/games';
+import { Play } from './play/play';
 import './app.css';
 
 export default function App() {
   return (
-    <>
+    <BrowserRouter>
         <header>
             <h1>TIC TAC TOE</h1>
             <nav>
                 <ul className="navbar">
-                    <li><a className="navbar_item" href="index.html">Play</a></li>
-                    <li><a className="navbar_item" href="login.html">Login</a></li>
-                    <li><a className="navbar_item active" href="games.html">Games</a></li>
+                    <li><NavLink className="navbar_item" to="play">Play</NavLink></li>
+                    <li><NavLink className="navbar_item" to="">Login</NavLink></li>
+                    <li><NavLink className="navbar_item" to="games">Games</NavLink></li>
                 </ul>
             </nav>
         </header>
 
-        <main>hello</main>
+        <Routes>
+            <Route path='/' element={<Login/>} exact />
+            <Route path='/play' element={<Play />} />
+            <Route path='/games' element={<Games />} />
+            <Route path="/*" element={<NotFound />} />
+        </Routes>    
 
         <footer>
             <hr />
@@ -23,6 +32,10 @@ export default function App() {
             <br />
             <span>Created by Jonah Larsen</span>
         </footer>
-    </>
+    </BrowserRouter>
   );
+}
+
+function NotFound() {
+    return <main>Page doesn't exist.</main>
 }
