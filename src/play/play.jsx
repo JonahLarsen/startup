@@ -7,14 +7,14 @@ export function Play() {
             <p>Logged in as Jonah</p>
             <h3>ID: 1 |  Opponent: Bob McDonald</h3>
             <form>
-                <label for="gamechoice">Choose game:</label>
+                <label htmlFor="gamechoice">Choose game:</label>
                 <select name="gamechoice" id="gamechoice">
                     <option value="1">1: Bob McDonald</option>
                     <option value="2">2: Billy Joel</option>
                     <option value="3">3: Jimbo James</option>
                 </select>
             </form>
-            <img src="../public/img/placeholder_game.png" alt="Placeholder image for Tic Tac Toe game" />
+            <img src="../img/placeholder_game.png" alt="Placeholder image for Tic Tac Toe game" />
             <p>Your turn...</p>
             <br />
             <br />    

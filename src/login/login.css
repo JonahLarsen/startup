@@ -8,7 +8,8 @@ input {
 
 form {
     height: auto;
-}
+} 
+
 
 input[type="text"] input [type="password"] {
     width: 100%;

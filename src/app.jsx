@@ -8,7 +8,8 @@ import './app.css';
 export default function App() {
   return (
     <BrowserRouter>
-        <header>
+        <div className="body">
+            <header>
             <h1>TIC TAC TOE</h1>
             <nav>
                 <ul className="navbar">
@@ -17,21 +18,22 @@ export default function App() {
                     <li><NavLink className="navbar_item" to="games">Games</NavLink></li>
                 </ul>
             </nav>
-        </header>
+            </header>
 
-        <Routes>
-            <Route path='/' element={<Login/>} exact />
-            <Route path='/play' element={<Play />} />
-            <Route path='/games' element={<Games />} />
-            <Route path="/*" element={<NotFound />} />
-        </Routes>    
+            <Routes>
+                <Route path='/' element={<Login/>} exact />
+                <Route path='/play' element={<Play />} />
+                <Route path='/games' element={<Games />} />
+                <Route path="/*" element={<NotFound />} />
+            </Routes>    
 
-        <footer>
-            <hr />
-            <span><a href="https://github.com/JonahLarsen/startup">Github Repo: https://github.com/JonahLarsen/startup</a></span>
-            <br />
-            <span>Created by Jonah Larsen</span>
-        </footer>
+            <footer>
+                <hr />
+                <span><a href="https://github.com/JonahLarsen/startup">Github Repo: https://github.com/JonahLarsen/startup</a></span>
+                <br />
+                <span>Created by Jonah Larsen</span>
+            </footer>
+        </div>
     </BrowserRouter>
   );
 }
