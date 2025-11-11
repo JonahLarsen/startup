@@ -21,12 +21,12 @@ export default function App() {
             <nav>
                 <ul className="navbar">
                     {
-                        loggedIn && 
+                        authState && 
                         <li><NavLink className="navbar_item" to="play">Play</NavLink></li>
                     }
                     <li><NavLink className="navbar_item" to="">Login</NavLink></li>
                     {
-                        loggedIn && 
+                        authState && 
                         <li><NavLink className="navbar_item" to="games">Games</NavLink></li>
                     }
                 </ul>
@@ -34,7 +34,7 @@ export default function App() {
             </header>
 
             <Routes>
-                <Route path='/' element={<Login/>} exact />
+                <Route path='/' element={<Login userEmail={userEmail} authState={authState} changeAuthState={setAuthState} />} exact />
                 <Route path='/play' element={<Play />} />
                 <Route path='/games' element={<Games />} />
                 <Route path="/*" element={<NotFound />} />

@@ -1,24 +1,14 @@
 import React from "react";
 import "./login.css"
+import { LoggedIn } from "./loggedIn";
+import { LoggedOut } from "./loggedOut";
 
-export function Login() {
+export function Login({userEmail, authState, changeAuthState}) {
     return (
         <main>
-            <h2>Login</h2>
-            <form>
-                <div>
-                    <span>Enter your Email</span>
-                    <br/>
-                    <input type="text" placeholder="your@email.com" />
-                </div>
-                <div>
-                    <span>Enter your Password</span>
-                    <br/>
-                    <input type="password" placeholder="password" />
-                </div>
-                <button type="submit">Login</button>
-                <button type="submit">Register</button>
-            </form> 
+            {authState ? <h2>Welcome {userEmail}</h2> : <h2>Login</h2>}
+            {authState && <LoggedIn userEmail={userEmail} onLogout={() => changeAuthState(false)} />}
+            {!authState && <LoggedOut userEmail={userEmail} onLogin={() => changeAuthState(true)} />} 
         </main>
     )
 }
