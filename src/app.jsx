@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Login } from './login/login';
 import { Games } from './games/games';
@@ -6,6 +6,13 @@ import { Play } from './play/play';
 import './app.css';
 
 export default function App() {
+    const [userEmail, setUserEmail] = useState(localStorage.getItem("userEmail") || "");
+    let loggedIn = false;
+    if (userEmail) {
+        loggedIn = true;
+    }
+    const [authState, setAuthState] = useState(loggedIn);
+
   return (
     <BrowserRouter>
         <div className="body">
@@ -13,9 +20,15 @@ export default function App() {
             <h1>TIC TAC TOE</h1>
             <nav>
                 <ul className="navbar">
-                    <li><NavLink className="navbar_item" to="play">Play</NavLink></li>
+                    {
+                        loggedIn && 
+                        <li><NavLink className="navbar_item" to="play">Play</NavLink></li>
+                    }
                     <li><NavLink className="navbar_item" to="">Login</NavLink></li>
-                    <li><NavLink className="navbar_item" to="games">Games</NavLink></li>
+                    {
+                        loggedIn && 
+                        <li><NavLink className="navbar_item" to="games">Games</NavLink></li>
+                    }
                 </ul>
             </nav>
             </header>
