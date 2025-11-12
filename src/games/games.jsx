@@ -15,8 +15,6 @@ export function Games() {
     }, []);
 
     const gameRows = []
-    console.log("hello")
-    console.log(gameList)
     if (gameList.length) {
         for (const [i, game] of gameList.entries()) {
             gameRows.push(
@@ -28,7 +26,6 @@ export function Games() {
             )
         }
     } else {
-        console.log("debug")
         gameRows.push(
             <tr>
                 <td colSpan="3">Start a game to see info</td>

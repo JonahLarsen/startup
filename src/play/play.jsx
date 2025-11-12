@@ -1,32 +1,74 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { StartGame } from "./startGame";
 
 export function Play(props) {
+    const [chatGPTMessage, setChatGPTMessage] = useState("")
+    const [gameList, setGameList] = useState([]);
+    const [currentGame, setCurrentGame] = useState(null);
+    const [gameIDCounter, setGameIDCounter] = useState(1);
+
+    function createGame(newGame) {
+        const newGameList = [...gameList, newGame];
+        localStorage.setItem("games", JSON.stringify(newGameList));
+        setGameList(newGameList);
+    }
+
+    useEffect(() => {
+        const gamesText = localStorage.getItem("games");
+        if (gamesText) {
+            setGameList(JSON.parse(gamesText));
+        }
+    }, [gameList]);
+
+    const gameRows = []
+    if (gameList.length) {
+        for (const [i, game] of gameList.entries()) {
+            gameRows.push(
+                <option value={game.id}>{game.id}: {game.opponentName}</option>
+            )
+        }
+    }
+
     function askChatGPT() {
-        return (
-            <p>The best move based on your current situation would be...</p>
-        )
+        setChatGPTMessage("The best move based on your current situation would be...")
     }
 
     return (
         <main>
             <h2>Game</h2>
-            <p>Logged in as {props.userEmail}</p>
-            <h3>ID: 1 |  Opponent: Bob McDonald</h3>
-            <form>
-                <label htmlFor="gamechoice">Choose game:</label>
-                <select name="gamechoice" id="gamechoice">
-                    <option value="1">1: Bob McDonald</option>
-                    <option value="2">2: Billy Joel</option>
-                    <option value="3">3: Jimbo James</option>
-                </select>
-            </form>
-            <img src="../img/placeholder_game.png" alt="Placeholder image for Tic Tac Toe game" />
-            <p>Your turn...</p>
-            <br />
-            <br />    
-            <p>Need help? Ask ChatGPT for the best next move!</p>
-            <button onClick={askChatGPT}>Ask ChatGPT</button>
-            <p></p>
+            <>
+                <p>Logged in as {props.userEmail}</p>
+                {!currentGame && 
+                    <div>
+                        <h3>Start a Game!</h3>
+                        <StartGame createGame={createGame} gameIDCounter={gameIDCounter} updateGameIDCounter={setGameIDCounter} />
+                    </div>
+                }
+            </>
+            {currentGame &&
+                <>
+                    <h3>ID: {currentGame.id} |  Opponent: {currentGame.opponentName}</h3>
+                    <form>
+                        <label htmlFor="gamechoice">Choose game:</label>
+                        <select className="gamechoice" id="gamechoice">
+                            gameRows
+                        </select>
+                    </form>
+                    <img src="../img/placeholder_game.png" alt="Placeholder image for Tic Tac Toe game" />
+                    {currentGame.turn === props.userEmail && 
+                        <p>Your turn...</p>
+                    }
+                    {currentGame.turn !== props.userEmail &&
+                        <p>{props.userEmail}'s turn...</p>
+                    }
+                    <br />
+                    <br />    
+                    <p>Need help? Ask ChatGPT for the best next move!</p>
+                    <button onClick={askChatGPT}>Ask ChatGPT</button>
+                    <p>{chatGPTMessage}</p>
+                </>
+            }
+
         </main>
     )
 }
