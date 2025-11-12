@@ -5,14 +5,18 @@ export function Play(props) {
     const [chatGPTMessage, setChatGPTMessage] = useState("")
     const [gameList, setGameList] = useState([]);
     const [currentGame, setCurrentGame] = useState(null);
-    const [gameIDCounter, setGameIDCounter] = useState(1);
+    const [gameIDCounter, setGameIDCounter] = useState(parseInt(localStorage.getItem("gameIDCounter")) || 1);
 
     function createGame(newGame) {
         const newGameList = [...gameList, newGame];
         localStorage.setItem("games", JSON.stringify(newGameList));
         setGameList(newGameList);
-        setGameIDCounter(pastCounter => pastCounter + 1)
+        setGameIDCounter(pastCounter => pastCounter + 1);
     }
+
+    useEffect(() => {
+        localStorage.setItem("gameIDCounter", gameIDCounter);
+    }, [gameIDCounter]);
 
     useEffect(() => {
         const gamesText = localStorage.getItem("games");
@@ -29,17 +33,20 @@ export function Play(props) {
     if (gameList.length) {
         for (const [i, game] of gameList.entries()) {
             gameRows.push(
-                <option value={game.id}>{game.id}: {game.opponentName}</option>
+                <option key={game.id} value={game.id}>{game.id}: {game.opponentName}</option>
             )
         }
+    }
+
+    function updateCurrentGame(id) {
+        const newCurrentGame = gameList.find((game) => game.id === id);
+        setCurrentGame(newCurrentGame);
     }
 
     function askChatGPT() {
         setChatGPTMessage("The best move based on your current situation would be...")
     }
 
-    console.log(gameList);
-    console.log(currentGame)
     return (
         <main>
             <h2>Game</h2>
@@ -52,7 +59,7 @@ export function Play(props) {
                     <h3>ID: {currentGame.id} |  Opponent: {currentGame.opponentName}</h3>
                     <form>
                         <label htmlFor="gamechoice">Choose game:</label>
-                        <select className="gamechoice" id="gamechoice" onChange={() => setCurrentGame(gameList[value])}>
+                        <select className="gamechoice" id="gamechoice" onChange={(e) => updateCurrentGame(parseInt(e.target.value))}>
                             {gameRows}
                         </select>
                     </form>

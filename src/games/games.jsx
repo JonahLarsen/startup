@@ -18,7 +18,7 @@ export function Games() {
     if (gameList.length) {
         for (const [i, game] of gameList.entries()) {
             gameRows.push(
-                <tr>
+                <tr key ={i}>
                     <td>{game.id}</td>
                     <td>{game.opponentName}</td>
                     <td>{game.turn}</td>
