@@ -1,10 +1,16 @@
 import React from "react";
 
-export function Play() {
+export function Play(props) {
+    function askChatGPT() {
+        return (
+            <p>The best move based on your current situation would be...</p>
+        )
+    }
+
     return (
         <main>
             <h2>Game</h2>
-            <p>Logged in as Jonah</p>
+            <p>Logged in as {props.userEmail}</p>
             <h3>ID: 1 |  Opponent: Bob McDonald</h3>
             <form>
                 <label htmlFor="gamechoice">Choose game:</label>
@@ -19,8 +25,8 @@ export function Play() {
             <br />
             <br />    
             <p>Need help? Ask ChatGPT for the best next move!</p>
-            <button>Ask ChatGPT</button>
-            <p>The best move based on your current situation would be...</p>
+            <button onClick={askChatGPT}>Ask ChatGPT</button>
+            <p></p>
         </main>
     )
 }

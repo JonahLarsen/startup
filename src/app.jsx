@@ -35,7 +35,7 @@ export default function App() {
 
             <Routes>
                 <Route path='/' element={<Login userEmail={userEmail} authState={authState} changeAuthState={setAuthState} />} exact />
-                <Route path='/play' element={<Play />} />
+                <Route path='/play' element={<Play userEmail={userEmail} />} />
                 <Route path='/games' element={<Games />} />
                 <Route path="/*" element={<NotFound />} />
             </Routes>    
