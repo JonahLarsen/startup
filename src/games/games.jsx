@@ -1,7 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./games.css"
 
 export function Games() {
+    const [gameList, setGameList] = useState([]);
+    const [wins, setWins] = useState(localStorage.getItem("wins") || 0);
+    const [losses, setLosses] = useState(localStorage.getItem("losses") || 0);
+
+
+    useEffect(() => {
+        const gamesText = localStorage.getItem("games");
+        if (gamesText) {
+            setGameList(JSON.parse(gamesText));
+        }
+    }, []);
+
+    const gameRows = []
+    console.log("hello")
+    console.log(gameList)
+    if (gameList.length) {
+        for (const [i, game] of gameList.entries()) {
+            gameRows.push(
+                <tr>
+                    <td>{game.id}</td>
+                    <td>{game.opponentName}</td>
+                    <td>{game.turn}</td>
+                </tr>
+            )
+        }
+    } else {
+        console.log("debug")
+        gameRows.push(
+            <tr>
+                <td colSpan="3">Start a game to see info</td>
+            </tr>
+        )
+    }
+
     return (
         <main>
             <h2>Games</h2>
@@ -14,29 +48,25 @@ export function Games() {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Bob McDonald</td>
-                        <td>Yours</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Billy Joel</td>
-                        <td>Theirs</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Jimbo James</td>
-                        <td>Theirs</td>
-                    </tr>
+                    {gameRows}
                 </tbody>
             </table>
             <br/>
             <h2>Record</h2>
-            <span>Wins: 5</span><br/>
-            <span>Losses: 3</span><br/>
-            <span>W/L Ratio: 1.67 </span><br/>
-            <div className="image_div"><img className="gameImg" src="img/positive_record.png" alt="Image of a green plus sign to indicate a strong W/L Ratio"/></div>
+            <span>Wins: {wins}</span><br/>
+            <span>Losses: {losses}</span><br/>
+            <span>W/L Ratio: {losses ? wins / losses : wins}</span><br/>
+            {wins > losses && 
+                <div className="image_div"><img className="gameImg" src="img/positive_record.png" alt="Image of a green plus sign to indicate a strong W/L Ratio"/></div>
+            }
+            {wins < losses && 
+                <div className="image_div"><img className="gameImg" src="img/negative_record.png" alt="Image of a red negative sign to indicated a weak W/L Ratio" /></div>
+            }
+            {wins === losses && 
+                <div className="image_div"><img className="gameImg" src="img/equal_record.png" alt="Image of a yellow equals sign to indicated a equal amount of wins and losses" /></div>
+            }
+                
+            
         </main>
     )
 }
