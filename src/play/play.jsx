@@ -11,6 +11,7 @@ export function Play(props) {
         const newGameList = [...gameList, newGame];
         localStorage.setItem("games", JSON.stringify(newGameList));
         setGameList(newGameList);
+        setGameIDCounter(pastCounter => pastCounter + 1)
     }
 
     useEffect(() => {
@@ -18,6 +19,10 @@ export function Play(props) {
         if (gamesText) {
             setGameList(JSON.parse(gamesText));
         }
+    }, []);
+
+    useEffect(() => {
+        setCurrentGame(gameList[0]);
     }, [gameList]);
 
     const gameRows = []
@@ -33,25 +38,22 @@ export function Play(props) {
         setChatGPTMessage("The best move based on your current situation would be...")
     }
 
+    console.log(gameList);
+    console.log(currentGame)
     return (
         <main>
             <h2>Game</h2>
+            <p>Logged in as {props.userEmail}</p>
             <>
-                <p>Logged in as {props.userEmail}</p>
-                {!currentGame && 
-                    <div>
-                        <h3>Start a Game!</h3>
-                        <StartGame createGame={createGame} gameIDCounter={gameIDCounter} updateGameIDCounter={setGameIDCounter} />
-                    </div>
-                }
+                
             </>
             {currentGame &&
                 <>
                     <h3>ID: {currentGame.id} |  Opponent: {currentGame.opponentName}</h3>
                     <form>
                         <label htmlFor="gamechoice">Choose game:</label>
-                        <select className="gamechoice" id="gamechoice">
-                            gameRows
+                        <select className="gamechoice" id="gamechoice" onChange={() => setCurrentGame(gameList[value])}>
+                            {gameRows}
                         </select>
                     </form>
                     <img src="../img/placeholder_game.png" alt="Placeholder image for Tic Tac Toe game" />
@@ -68,6 +70,11 @@ export function Play(props) {
                     <p>{chatGPTMessage}</p>
                 </>
             }
+            <div>
+                <h3>Start a Game!</h3>
+                <StartGame createGame={createGame} gameIDCounter={gameIDCounter} userEmail={props.userEmail} />
+            </div>
+
 
         </main>
     )
