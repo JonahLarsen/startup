@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { StartGame } from "./startGame";
+import { TicTacToe } from "./TicTacToe";
 
 export function Play(props) {
     const [chatGPTMessage, setChatGPTMessage] = useState("")
@@ -51,9 +52,6 @@ export function Play(props) {
         <main>
             <h2>Game</h2>
             <p>Logged in as {props.userEmail}</p>
-            <>
-                
-            </>
             {currentGame &&
                 <>
                     <h3>ID: {currentGame.id} |  Opponent: {currentGame.opponentName}</h3>
@@ -63,7 +61,7 @@ export function Play(props) {
                             {gameRows}
                         </select>
                     </form>
-                    <img src="../img/placeholder_game.png" alt="Placeholder image for Tic Tac Toe game" />
+                    <TicTacToe gameArray={currentGame.gameArray} />
                     {currentGame.turn === props.userEmail && 
                         <p>Your turn...</p>
                     }

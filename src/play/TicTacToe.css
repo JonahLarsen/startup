@@ -1,0 +1,33 @@
+.ticTacToeTable {
+    margin-top: 25px;
+    border-collapse: collapse;
+    font-size: xx-large;
+    background-color: cornflowerblue;
+}
+
+.ticTacToeCell {
+    padding: 20px;
+    width:35px;
+    height:35px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.left {
+    border-bottom: solid;
+    border-right: solid;
+}
+
+.right {
+    border-bottom: solid;
+    border-left: solid;
+}
+
+.middle {
+    border: solid;
+}
+
+.bottom-middle {
+    border-left: solid;
+    border-right: solid;
+}
