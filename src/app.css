@@ -77,11 +77,11 @@ button {
 }
 
 @media (max-height: 800px) {
-  footer {
+  /* footer {
     display: none;
-  }
+  } */
   main {
-    flex: 1 100vh;
+    flex: 1 1 auto;
   }
 }
 
