@@ -84,8 +84,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [x] **All functionality implemented or mocked out** - You can login, check games, play tictactoe against a fake person through setInterval, when you win or lose it updates your record, logout, etc. A lot of it is using localStorage for now that will be the database in the future. And setinterval is powering the main part which is playing tic tac toe.
+- [x] **Hooks** - Used useEffect all over, useState all over, and setInterval
 
 ## 🚀 Service deliverable
 

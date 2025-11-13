@@ -105,12 +105,19 @@ export function Play(props) {
             const userWon = checkRowWin(0) ?? checkRowWin(3) ?? checkRowWin(6) ?? checkColumnWin(0) ?? checkColumnWin(1) ?? checkColumnWin(2) ?? checkDiagnolWin();
             if (userWon || userWon === false) {
                 if (userWon) {
+                    const currentWins = localStorage.getItem("wins");
+                    localStorage.setItem("wins", currentWins + 1);
                     alert("You Won!");
                 } else {
+                    const currentLosses = localStorage.getItem("losses");
+                    localStorage.setItem("losses", currentLosses + 1);
                     alert("You Lost!");
                 }
                 const listOfGames = JSON.parse(localStorage.getItem("games"));
-                const newListOfGames = listOfGames.filter(game => game.id !== currentGame.gameID);
+                const newListOfGames = listOfGames.filter(game => game.id !== currentGame.id);
+                console.log("hello", currentGame.id);
+                // console.log("whatup", newListOfGames[1].id)
+                console.log(newListOfGames);
                 localStorage.setItem("games", JSON.stringify(newListOfGames));
                 setGameList(newListOfGames);
                 if (newListOfGames.length > 0) {
