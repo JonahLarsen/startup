@@ -12,7 +12,26 @@ export function Play(props) {
         const newGameList = [...gameList, newGame];
         localStorage.setItem("games", JSON.stringify(newGameList));
         setGameList(newGameList);
+        setCurrentGame(newGame);
         setGameIDCounter(pastCounter => pastCounter + 1);
+    }
+
+    function updateGameArray(slot) {
+        console.log("update")
+        const newArray = {...currentGame.gameArray};
+        newArray[slot] = "X";
+        const games = JSON.parse(localStorage.getItem("games"));
+        for (let i=0; i < games.length; i++) {
+            if (games[i].id === currentGame.id) {
+                games[i].gameArray = newArray;
+                games[i].turn = games[i].opponentName
+                setCurrentGame(games[i]);
+                break;
+            }
+        }
+        setGameList(games);
+        console.log("games", games);
+        localStorage.setItem("games", JSON.stringify(games));
     }
 
     useEffect(() => {
@@ -22,13 +41,14 @@ export function Play(props) {
     useEffect(() => {
         const gamesText = localStorage.getItem("games");
         if (gamesText) {
-            setGameList(JSON.parse(gamesText));
+            const savedGames = JSON.parse(gamesText);
+            setGameList(savedGames);
+            if (savedGames.length > 0) {
+                setCurrentGame(savedGames[0]);
+            }
         }
     }, []);
 
-    useEffect(() => {
-        setCurrentGame(gameList[0]);
-    }, [gameList]);
 
     const gameRows = []
     if (gameList.length) {
@@ -52,7 +72,7 @@ export function Play(props) {
         <main>
             <h2>Game</h2>
             <p>Logged in as {props.userEmail}</p>
-            {currentGame &&
+            {currentGame ? (
                 <>
                     <h3>ID: {currentGame.id} |  Opponent: {currentGame.opponentName}</h3>
                     <form>
@@ -61,12 +81,12 @@ export function Play(props) {
                             {gameRows}
                         </select>
                     </form>
-                    <TicTacToe gameArray={currentGame.gameArray} />
+                    <TicTacToe gameArray={currentGame.gameArray} updateGameArray={updateGameArray} gameID={currentGame.id} currentTurn={currentGame.turn} userEmail={props.userEmail}/>
                     {currentGame.turn === props.userEmail && 
                         <p>Your turn...</p>
                     }
                     {currentGame.turn !== props.userEmail &&
-                        <p>{props.userEmail}'s turn...</p>
+                        <p>{currentGame.opponentName}'s turn...</p>
                     }
                     <br />
                     <br />    
@@ -74,6 +94,7 @@ export function Play(props) {
                     <button onClick={askChatGPT}>Ask ChatGPT</button>
                     <p>{chatGPTMessage}</p>
                 </>
+            ) : (<span></span>)
             }
             <div>
                 <h3>Start a Game!</h3>
