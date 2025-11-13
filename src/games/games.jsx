@@ -27,7 +27,7 @@ export function Games() {
         }
     } else {
         gameRows.push(
-            <tr>
+            <tr key="start">
                 <td colSpan="3">Start a game to see info</td>
             </tr>
         )

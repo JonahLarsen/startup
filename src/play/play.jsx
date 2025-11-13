@@ -17,7 +17,6 @@ export function Play(props) {
     }
 
     function updateGameArray(slot) {
-        console.log("update")
         const newArray = {...currentGame.gameArray};
         newArray[slot] = "X";
         const games = JSON.parse(localStorage.getItem("games"));
@@ -30,9 +29,104 @@ export function Play(props) {
             }
         }
         setGameList(games);
-        console.log("games", games);
         localStorage.setItem("games", JSON.stringify(games));
     }
+
+    useEffect(() => {
+        if (!currentGame) {
+            return;
+        }
+        const interval = setInterval(() => {
+            console.log("interval")
+            const newArray = {...currentGame.gameArray};
+            for (let i=0; i < 9; i++) {
+                if (currentGame.turn === currentGame.opponentName && newArray[i] === " ") {
+                    newArray[i] = "O";
+                    const games = JSON.parse(localStorage.getItem("games"));
+                    for (let j=0; j < games.length; j++) {
+                        if (games[j].id === currentGame.id) {
+                            games[j].gameArray = newArray;
+                            games[j].turn = props.userEmail;
+                            setCurrentGame(games[j]);
+                            break;
+                        }
+                    }
+                    setGameList(games);
+                    localStorage.setItem("games", JSON.stringify(games));
+                    break;
+                }
+            }
+        }, 5000);
+
+        return () => clearInterval(interval);
+    }, [currentGame, props.userEmail]);
+
+
+    useEffect(() => {
+        function checkRowWin (leftIndex) {
+            if (currentGame.gameArray[leftIndex] !== " " && currentGame.gameArray[leftIndex] === currentGame.gameArray[leftIndex + 1] && currentGame.gameArray[leftIndex] === currentGame.gameArray[leftIndex + 2]) {
+                if (currentGame.gameArray[leftIndex] === "X") {
+                    return true;
+                }
+                if (currentGame.gameArray[leftIndex] === "O") {
+                    return false;
+                }
+            }
+        }
+        function checkColumnWin (topIndex) {
+            if (currentGame.gameArray[topIndex] !== " " && currentGame.gameArray[topIndex] === currentGame.gameArray[topIndex + 3] && currentGame.gameArray[topIndex] === currentGame.gameArray[topIndex + 6]) {
+                if (currentGame.gameArray[topIndex] === "X") {
+                    return true;
+                }
+                if (currentGame.gameArray[topIndex] === "O") {
+                    return false;
+                }
+            }
+        }
+        function checkDiagnolWin() {
+            if (currentGame.gameArray[0] !== " " && currentGame.gameArray[0] === currentGame.gameArray[4] && currentGame.gameArray[0] === currentGame.gameArray[8]) {
+                if (currentGame.gameArray[0] === "X") {
+                    return true;
+                }
+                if (currentGame.gameArray[0] === "O") {
+                    return false;
+                }
+            }
+            if (currentGame.gameArray[2] !== " " && currentGame.gameArray[2] === currentGame.gameArray[4] && currentGame.gameArray[2] === currentGame.gameArray[6]) {
+                if (currentGame.gameArray[2] === "X") {
+                    return true;
+                }
+                if (currentGame.gameArray[2] === "O") {
+                    return false;
+                }
+            }
+        }
+        if (currentGame) {
+            const userWon = checkRowWin(0) ?? checkRowWin(3) ?? checkRowWin(6) ?? checkColumnWin(0) ?? checkColumnWin(1) ?? checkColumnWin(2) ?? checkDiagnolWin();
+            if (userWon || userWon === false) {
+                if (userWon) {
+                    alert("You Won!");
+                } else {
+                    alert("You Lost!");
+                }
+                const listOfGames = JSON.parse(localStorage.getItem("games"));
+                const newListOfGames = listOfGames.filter(game => game.id !== currentGame.gameID);
+                localStorage.setItem("games", JSON.stringify(newListOfGames));
+                setGameList(newListOfGames);
+                if (newListOfGames.length > 0) {
+                    setCurrentGame(newListOfGames[0]);
+                } else {
+                    setCurrentGame(null);
+                }
+            }
+            console.log("win", userWon);
+        }
+
+    }, [currentGame]);
+
+
+
+
 
     useEffect(() => {
         localStorage.setItem("gameIDCounter", gameIDCounter);
