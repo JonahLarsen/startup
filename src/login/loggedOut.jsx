@@ -4,16 +4,32 @@ import React from "react";
 
 export function LoggedOut(props) {
     const [userEmail, setUserEmail] = useState(props.userEmail);
-    const [password, setPassword] = useState(props.password);
+    const [password, setPassword] = useState("");
 
     async function login() {
-        localStorage.setItem("userEmail", userEmail);
-        props.onLogin();
+        loginOrRegister(`/api/auth/login`);
     }
 
     async function register() {
-        localStorage.setItem("userEmail", userEmail);
-        props.onLogin();
+        loginOrRegister(`api/auth/create`);
+    }
+
+    async function loginOrRegister(endpoint) {
+        const response = await fetch(endpoint, {
+            method: "post",
+            body: JSON.stringify({email: userEmail, password: password }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            }, 
+        }
+        );
+        if (response?.status === 200) {
+            localStorage.setItem("userEmail", userEmail);
+            props.onLogin();
+        } else {
+            const body = await response.json();
+            alert(`Error: ${body.msg}`);
+        }
     }
 
     return (
