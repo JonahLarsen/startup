@@ -40,7 +40,18 @@ apiRouter.post("/auth/login", async (req, res) => {
         } 
     }
     res.status(401).send({msg: "Unauthorized"});
+});
+
+apiRouter.post("/auth/logout", async (req, res) => {
+    const user = await getUser("token", req.cookies[authCookieName]);
+    if (user) {
+        delete user.token;
+    }
+    res.clearCookie(authCookieName);
+    res.status(204).end();
 })
+
+
 
 
 app.listen(port, () => {
