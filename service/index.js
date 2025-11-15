@@ -26,7 +26,7 @@ apiRouter.get("/gameIDCounter", async (req, res) => {
     res.send({gameIDCounter: gameIDCounter});
 });
 
-apiRouter.put("/gameIDCOunter/increment", async (req, res) => {
+apiRouter.put("/gameIDCounter/increment", async (req, res) => {
     gameIDCounter++;
     res.send({CounterStatus: "Incremented"});
 });
@@ -86,8 +86,8 @@ app.use(function (err, req, res, next) {
     res.status(500).send({type: err.name, message: err.message});
 });
 
-function updateGames(newGame) {
-    games.push(newGame);
+function updateGames(newGames) {
+    games = newGames
 }
 
 async function createUser(email, password) {

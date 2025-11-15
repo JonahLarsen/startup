@@ -9,18 +9,34 @@ export function Play(props) {
     const [gameIDCounter, setGameIDCounter] = useState(1);
 
 
-    function createGame(newGame) {
+    async function createGame(newGame) {
         const newGameList = [...gameList, newGame];
-        localStorage.setItem("games", JSON.stringify(newGameList));
+
+        await fetch("/api/game", {
+            method: "POST",
+            headers: {"content-type": "application/json"},
+            body: JSON.stringify(newGame),
+        });
+
         setGameList(newGameList);
         setCurrentGame(newGame);
-        setGameIDCounter(pastCounter => pastCounter + 1);
+
+        await fetch("/api/gameIDCounter/increment", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(res => res.json())
+            .then(message => {
+                console.log(message);
+            })
     }
 
     function updateGameArray(slot) {
         const newArray = {...currentGame.gameArray};
         newArray[slot] = "X";
-        const games = JSON.parse(localStorage.getItem("games"));
+        const games = structuredClone(gameList);
         for (let i=0; i < games.length; i++) {
             if (games[i].id === currentGame.id) {
                 games[i].gameArray = newArray;
@@ -30,7 +46,21 @@ export function Play(props) {
             }
         }
         setGameList(games);
-        localStorage.setItem("games", JSON.stringify(games));
+        
+        fetch("/api/game", {
+            method: "POST",
+            headers: {
+                "Content-Type" : "application/json"
+            },
+            body: JSON.stringify(games),
+        })
+            .then(res => res.json())
+            .then(message => {
+                console.log("updated games:", message);
+            })
+            .catch(err => {
+                console.error(err);
+            })
     }
 
     useEffect(() => {
@@ -132,30 +162,23 @@ export function Play(props) {
 
     }, [currentGame]);
 
-
-
-
-
-    useEffect(() => {
-        localStorage.setItem("gameIDCounter", gameIDCounter);
-    }, [gameIDCounter]);
-
     useEffect(() => {
 
         fetch("/api/gameIDCounter")
             .then((response) => response.json())
             .then((counter) => {
                 setGameIDCounter(counter.gameIDCounter);
-            });
+        });
 
-        const gamesText = localStorage.getItem("games");
-        if (gamesText) {
-            const savedGames = JSON.parse(gamesText);
-            setGameList(savedGames);
-            if (savedGames.length > 0) {
-                setCurrentGame(savedGames[0]);
-            }
-        }
+        fetch("/api/games")
+            .then((response) => response.json())
+            .then((games) => {
+                setGameList(games);
+                if (games.length > 0) {
+                    setCurrentGame(games[0]);
+                }
+            })
+
     }, []);
 
 
