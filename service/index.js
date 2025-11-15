@@ -62,8 +62,47 @@ const verifyAuth = async (req, res, next) => {
 
 apiRouter.get("/games", verifyAuth, (req, res) => {
     res.send(games);
-})
+});
 
+apiRouter.post("/game", verifyAuth, (req, res) => {
+    games = updateGames(req.body);
+    res.send(games);
+});
+
+app.use(function (err, req, res, next) {
+    res.status(500).send({type: err.name, message: err.message});
+});
+
+function updateGames(newGame) {
+    games.push(newGame);
+}
+
+async function createUser(email, password) {
+    const passwordHash = await bcrypt.hash(password, 10);
+
+    const user = {
+        email: email,
+        password: passwordHash,
+        token: uuid.v4(),
+    };
+    users.push(user);
+
+    return user;
+}
+
+async function getUser(field, value) {
+    if (!value) return null;
+
+    return users.find((u) => u[field] === value);
+}
+
+function setAuthCookie(res, authToken) {
+    res.cookie(authCookieName, authToken, {
+        secure: true,
+        httpOnly: true,
+        sameSite: 'strict',
+    });
+}
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
