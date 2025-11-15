@@ -6,7 +6,7 @@ const uuid = require("uuid");
 const authCookieName = "token";
 
 let users = [];
-let scores = [];
+let games = [];
 
 const app = express();
 
@@ -59,6 +59,10 @@ const verifyAuth = async (req, res, next) => {
         res.status(401).send({msg: "Unauthorized"});
     }
 };
+
+apiRouter.get("/games", verifyAuth, (req, res) => {
+    res.send(games);
+})
 
 
 app.listen(port, () => {
