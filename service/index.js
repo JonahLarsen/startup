@@ -7,6 +7,8 @@ const authCookieName = "token";
 
 let users = [];
 let games = [];
+let wins = 0;
+let losses = 0;
 let gameIDCounter = 1;
 
 const app = express();
@@ -30,6 +32,24 @@ apiRouter.put("/gameIDCounter/increment", async (req, res) => {
     gameIDCounter++;
     res.send({CounterStatus: "Incremented"});
 });
+
+apiRouter.get("/wins", async (req, res) => {
+    res.send({wins: wins});
+})
+
+apiRouter.put("/wins/increment", async (req, res) => {
+    wins++;
+    res.send({WinStatus: "Incremented"});
+})
+
+apiRouter.get("/losses", async (req, res) => {
+    res.send({losses: losses});
+})
+
+apiRouter.put("/losses/increment", async (req, res) => {
+    losses++;
+    res.send({LossStatus: "Incremented"});
+})
 
 apiRouter.post("/auth/create", async (req, res) => {
     if (await getUser("email", req.body.email)) {

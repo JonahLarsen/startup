@@ -15,7 +15,7 @@ export function Play(props) {
         await fetch("/api/game", {
             method: "POST",
             headers: {"content-type": "application/json"},
-            body: JSON.stringify(newGame),
+            body: JSON.stringify(newGameList),
         });
 
         setGameList(newGameList);
@@ -73,7 +73,7 @@ export function Play(props) {
             for (let i=0; i < 9; i++) {
                 if (currentGame.turn === currentGame.opponentName && newArray[i] === " ") {
                     newArray[i] = "O";
-                    const games = JSON.parse(localStorage.getItem("games"));
+                    const games = structuredClone(gameList);
                     for (let j=0; j < games.length; j++) {
                         if (games[j].id === currentGame.id) {
                             games[j].gameArray = newArray;
@@ -83,7 +83,20 @@ export function Play(props) {
                         }
                     }
                     setGameList(games);
-                    localStorage.setItem("games", JSON.stringify(games));
+                    fetch("/api/game", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type" : "application/json"
+                        },
+                        body: JSON.stringify(games),
+                    })
+                        .then(res => res.json())
+                        .then(message => {
+                            console.log("updated games:", message);
+                        })
+                        .catch(err => {
+                            console.error(err);
+                        })
                     break;
                 }
             }
