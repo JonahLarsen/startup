@@ -6,8 +6,14 @@ export function LoggedIn (props) {
     const navigate = useNavigate();
 
     function logout() {
-        localStorage.removeItem("userEmail");
-        props.onLogout();
+        fetch(`/api/auth/logout`, {
+            method: 'delete',
+        }).catch(() => {
+            //Logout failed
+        }).finally(() => {
+            localStorage.removeItem("userEmail");
+            props.onLogout();
+        })
     }
 
     return (
