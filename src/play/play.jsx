@@ -31,6 +31,7 @@ export function Play(props) {
             .then(message => {
                 console.log(message);
             })
+        setGameIDCounter(pastCounter => pastCounter + 1);
     }
 
     function updateGameArray(slot) {

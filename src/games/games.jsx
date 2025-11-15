@@ -3,8 +3,8 @@ import "./games.css"
 
 export function Games() {
     const [gameList, setGameList] = useState([]);
-    const [wins, setWins] = useState(localStorage.getItem("wins") || 0);
-    const [losses, setLosses] = useState(localStorage.getItem("losses") || 0);
+    const [wins, setWins] = useState(0);
+    const [losses, setLosses] = useState(0);
 
 
     useEffect(() => {
@@ -12,6 +12,18 @@ export function Games() {
             .then((response) => response.json())
             .then((games) => {
                 setGameList(games);
+            })
+
+        fetch("/api/wins")
+            .then((response) => response.json())
+            .then((wins) => {
+                setWins(wins.wins);
+            })
+
+        fetch("/api/losses")
+            .then((response) => response.json())
+            .then((losses) => {
+                setLosses(losses.losses);
             })
     }, []);
 

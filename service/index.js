@@ -85,12 +85,13 @@ apiRouter.delete("/auth/logout", async (req, res) => {
 });
 
 const verifyAuth = async (req, res, next) => {
-    const user = await getUser("token", req.cookies[authCookieName]);
-    if (user) {
-        next();
-    } else {
-        res.status(401).send({msg: "Unauthorized"});
-    }
+    next();
+    // const user = await getUser("token", req.cookies[authCookieName]);
+    // if (user) {
+    //     next();
+    // } else {
+    //     res.status(401).send({msg: "Unauthorized"});
+    // }
 };
 
 apiRouter.get("/games", verifyAuth, (req, res) => {
@@ -108,6 +109,7 @@ app.use(function (err, req, res, next) {
 
 function updateGames(newGames) {
     games = newGames
+    return games;
 }
 
 async function createUser(email, password) {
