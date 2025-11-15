@@ -149,20 +149,41 @@ export function Play(props) {
             const userWon = checkRowWin(0) ?? checkRowWin(3) ?? checkRowWin(6) ?? checkColumnWin(0) ?? checkColumnWin(1) ?? checkColumnWin(2) ?? checkDiagnolWin();
             if (userWon || userWon === false) {
                 if (userWon) {
-                    const currentWins = localStorage.getItem("wins");
-                    localStorage.setItem("wins", currentWins + 1);
+                    fetch("/api/wins/increment", {
+                        method: "PUT",
+                        headers: {
+                            "Content-type": "application/json",
+                        },
+                    });
                     alert("You Won!");
                 } else {
-                    const currentLosses = localStorage.getItem("losses");
-                    localStorage.setItem("losses", currentLosses + 1);
+                    fetch("api/losses/increment", {
+                        method: "PUT",
+                        headers: {
+                            "Content-type": "application/json",
+                        },
+                    });
                     alert("You Lost!");
                 }
-                const listOfGames = JSON.parse(localStorage.getItem("games"));
+                const listOfGames = structuredClone(gameList);
                 const newListOfGames = listOfGames.filter(game => game.id !== currentGame.id);
-                console.log("hello", currentGame.id);
+                // console.log("hello", currentGame.id);
                 // console.log("whatup", newListOfGames[1].id)
-                console.log(newListOfGames);
-                localStorage.setItem("games", JSON.stringify(newListOfGames));
+                // console.log(newListOfGames);
+                fetch("/api/game", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type" : "application/json"
+                        },
+                        body: JSON.stringify(newListOfGames),
+                    })
+                        .then(res => res.json())
+                        .then(message => {
+                            console.log("updated games:", message);
+                        })
+                        .catch(err => {
+                            console.error(err);
+                        })
                 setGameList(newListOfGames);
                 if (newListOfGames.length > 0) {
                     setCurrentGame(newListOfGames[0]);
