@@ -6,7 +6,8 @@ export function Play(props) {
     const [chatGPTMessage, setChatGPTMessage] = useState("")
     const [gameList, setGameList] = useState([]);
     const [currentGame, setCurrentGame] = useState(null);
-    const [gameIDCounter, setGameIDCounter] = useState(parseInt(localStorage.getItem("gameIDCounter")) || 1);
+    const [gameIDCounter, setGameIDCounter] = useState(1);
+
 
     function createGame(newGame) {
         const newGameList = [...gameList, newGame];
@@ -140,6 +141,13 @@ export function Play(props) {
     }, [gameIDCounter]);
 
     useEffect(() => {
+
+        fetch("/api/gameIDCounter")
+            .then((response) => response.json())
+            .then((counter) => {
+                setGameIDCounter(counter.gameIDCounter);
+            });
+
         const gamesText = localStorage.getItem("games");
         if (gamesText) {
             const savedGames = JSON.parse(gamesText);

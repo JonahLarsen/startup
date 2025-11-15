@@ -7,6 +7,7 @@ const authCookieName = "token";
 
 let users = [];
 let games = [];
+let gameIDCounter = 1;
 
 const app = express();
 
@@ -21,6 +22,14 @@ app.use(express.static("public"));
 let apiRouter = express.Router();
 app.use("/api", apiRouter);
 
+apiRouter.get("/gameIDCounter", async (req, res) => {
+    res.send({gameIDCounter: gameIDCounter});
+});
+
+apiRouter.put("/gameIDCOunter/increment", async (req, res) => {
+    gameIDCounter++;
+    res.send({CounterStatus: "Incremented"});
+});
 
 apiRouter.post("/auth/create", async (req, res) => {
     if (await getUser("email", req.body.email)) {
