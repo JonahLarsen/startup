@@ -8,10 +8,11 @@ export function Games() {
 
 
     useEffect(() => {
-        const gamesText = localStorage.getItem("games");
-        if (gamesText) {
-            setGameList(JSON.parse(gamesText));
-        }
+        fetch("/api/games")
+            .then((response) => response.json())
+            .then((games) => {
+                setGameList(games);
+            })
     }, []);
 
     const gameRows = []
