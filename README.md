@@ -91,12 +91,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
+- [x] **Node.js/Express HTTP service** - Installed and used express on port 4000.
+- [x] **Static middleware for frontend** - Serves frontend files from static public directory
+- [x] **Calls to third party endpoints** - Calls OpenAI endpoint to get a suggested next move.
+- [x] **Backend service endpoints** - Endpoints for getting game, wins, losses, users, etc.
+- [x] **Frontend calls service endpoints** - Updates and gets game, wins, losses, users, etc. from the backend using fetch.
+- [x] **Supports registration, login, logout, and restricted endpoint** - Endpoints for creating users, logging in, logging out. 
 
 
 ## 🚀 DB deliverable
