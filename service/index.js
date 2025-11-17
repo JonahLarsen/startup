@@ -2,6 +2,8 @@ const express = require('express');
 const cookieParser = require("cookie-parser");
 const bcrypt = require("bcryptjs");
 const uuid = require("uuid");
+const OpenAI = require("openai");
+require("dotenv").config();
 
 const authCookieName = "token";
 
@@ -82,6 +84,18 @@ apiRouter.delete("/auth/logout", async (req, res) => {
     }
     res.clearCookie(authCookieName);
     res.status(204).end();
+});
+
+apiRouter.post("/chat", async (req, res) => {
+    const {prompt} = req.body;
+    const client = new OpenAI({apiKey: process.env.OPENAI_API_KEY});
+
+    const response = await client.chat.completions.create({
+        model: "gpt-4.1",
+        messages: [{ role: "user", content: prompt}],
+    });
+
+    res.json({ reply: response.choices[0].message.content });
 });
 
 const verifyAuth = async (req, res, next) => {

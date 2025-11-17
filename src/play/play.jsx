@@ -231,8 +231,22 @@ export function Play(props) {
         setCurrentGame(newCurrentGame);
     }
 
-    function askChatGPT() {
-        setChatGPTMessage("The best move based on your current situation would be...")
+    async function askChatGPT() {
+        console.log("gameArray", currentGame.gameArray);
+        const prompt = `Be brief in your response and only include the specifc move saying what space the user should check knowing that 0-2 is the top row, 3-5 is the middle row, and 6-8 is the bottom row. What is the best next move in a tic tac toe game for the X player with the table going left to right top to bottom ${JSON.stringify(currentGame.gameArray)}`
+
+        fetch("/api/chat", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ prompt })
+        })
+        .then((response) => response.json())
+        .then((message) => {
+            // console.log(response);
+            // const message = response.json();
+            console.log(message.reply);
+            setChatGPTMessage(message.reply);
+        });
     }
 
     return (
