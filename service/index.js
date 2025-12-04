@@ -70,6 +70,7 @@ apiRouter.post("/auth/login", async (req, res) => {
     if (user) {
         if (await bcrypt.compare(req.body.password, user.password)) {
             user.token = uuid.v4();
+            await DB.updateUser(user);
             setAuthCookie(res, user.token);
             res.send({email: user.email});
             return;
@@ -82,6 +83,7 @@ apiRouter.delete("/auth/logout", async (req, res) => {
     const user = await getUser("token", req.cookies[authCookieName]);
     if (user) {
         delete user.token;
+        DB.updateUser(user);
     }
     res.clearCookie(authCookieName);
     res.status(204).end();
