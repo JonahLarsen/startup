@@ -36,11 +36,12 @@ apiRouter.put("/gameIDCounter/increment", async (req, res) => {
 });
 
 apiRouter.get("/wins", async (req, res) => {
+    const wins = DB.getWins
     res.send({wins: wins});
 })
 
 apiRouter.put("/wins/increment", async (req, res) => {
-    wins++;
+    await DB.incrementWins();
     res.send({WinStatus: "Incremented"});
 })
 

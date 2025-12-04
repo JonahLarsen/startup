@@ -42,3 +42,11 @@ function getGameIDCounter() {
 async function incrementGameIDCounter() {
     await gamesStatus.updateOne({name: "gameIDCounter"}, {$inc: {gameIDCounter: 1}});
 }
+
+function getWins() {
+    return gamesStatus.findOne({name: "wins"}).wins;
+}
+
+async function incrementWins() {
+    await gamesStatus.updateOne({name: "wins"}, {$inc: {wins: 1}});
+}
