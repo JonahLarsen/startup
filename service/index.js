@@ -8,7 +8,6 @@ require("dotenv").config();
 
 const authCookieName = "token";
 
-let users = [];
 let games = [];
 let wins = 0;
 let losses = 0;
@@ -135,7 +134,7 @@ async function createUser(email, password) {
         password: passwordHash,
         token: uuid.v4(),
     };
-    users.push(user);
+    await DB.addUser(user);
 
     return user;
 }
@@ -144,9 +143,9 @@ async function getUser(field, value) {
     if (!value) return null;
 
     if (field === "token") {
-        return Db.getUserByToken(value);
+        return DB.getUserByToken(value);
     }
-    return users.find((u) => u[field] === value);
+    return DB.getUser(value);
 }
 
 function setAuthCookie(res, authToken) {
