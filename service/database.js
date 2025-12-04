@@ -22,3 +22,15 @@ const gamesStatus = db.collection('gamesStatus');
 function getUser(email){
     return users.findOne({email: email});
 }
+
+function getUserByToken(token) {
+    return users.findOne({ token: token });
+}
+
+async function addUser(user) {
+    await users.insertOne(user);
+}
+
+async function updateUser(user) {
+    await users.updateOne({email: user.email}, {$set: user});
+}

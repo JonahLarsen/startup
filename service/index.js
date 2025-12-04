@@ -3,6 +3,7 @@ const cookieParser = require("cookie-parser");
 const bcrypt = require("bcryptjs");
 const uuid = require("uuid");
 const OpenAI = require("openai");
+const DB = require("./database.js");
 require("dotenv").config();
 
 const authCookieName = "token";
@@ -142,6 +143,9 @@ async function createUser(email, password) {
 async function getUser(field, value) {
     if (!value) return null;
 
+    if (field === "token") {
+        return Db.getUserByToken(value);
+    }
     return users.find((u) => u[field] === value);
 }
 
