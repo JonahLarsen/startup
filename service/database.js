@@ -58,3 +58,12 @@ function getLosses() {
 async function incrementLosses() {
     await gamesStatus.updateOne({name: "losses"}, {$inc: {losses: 1}});
 }
+
+function getGames() {
+    return games.find({});
+}
+
+async function updateGames(newGames) {
+    await games.drop();
+    await games.insertMany(newGames);
+}

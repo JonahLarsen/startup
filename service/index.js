@@ -9,7 +9,6 @@ require("dotenv").config();
 const authCookieName = "token";
 
 let games = [];
-let losses = 0;
 
 const app = express();
 
@@ -112,11 +111,12 @@ const verifyAuth = async (req, res, next) => {
 };
 
 apiRouter.get("/games", verifyAuth, (req, res) => {
+    const games = DB.getGames();
     res.send(games);
 });
 
-apiRouter.post("/game", verifyAuth, (req, res) => {
-    games = updateGames(req.body);
+apiRouter.post("/game", verifyAuth, async (req, res) => {
+    const games = await updateGames(req.body);
     res.send(games);
 });
 
@@ -124,8 +124,8 @@ app.use(function (err, req, res, next) {
     res.status(500).send({type: err.name, message: err.message});
 });
 
-function updateGames(newGames) {
-    games = newGames
+async function updateGames(newGames) {
+    const games = await DB.updateGames(newGames);
     return games;
 }
 
