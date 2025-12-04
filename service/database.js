@@ -67,3 +67,18 @@ async function updateGames(newGames) {
     await games.drop();
     await games.insertMany(newGames);
 }
+
+modeule.exports = {
+    getUser,
+    getUserByToken,
+    addUser,
+    updateUser,
+    getGameIDCounter,
+    incrementGameIDCounter,
+    getWins,
+    incrementWins,
+    getLosses,
+    incrementLosses,
+    getGames,
+    updateGames,
+}
