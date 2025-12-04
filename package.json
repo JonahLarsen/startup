@@ -21,6 +21,7 @@
   "homepage": "https://github.com/JonahLarsen/startup#readme",
   "dependencies": {
     "dotenv": "^17.2.3",
+    "mongodb": "^7.0.0",
     "patch-package": "^8.0.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
