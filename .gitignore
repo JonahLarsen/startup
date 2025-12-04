@@ -4,3 +4,4 @@ deployReact.sh
 deployService.sh
 node_modules
 .env
+dbConfig.json
