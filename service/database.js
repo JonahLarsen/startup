@@ -35,24 +35,28 @@ async function updateUser(user) {
     await users.updateOne({email: user.email}, {$set: user});
 }
 
-function getGameIDCounter() {
-    return gamesStatus.findOne({name: "gameIDCounter"}).gameIDCounter;
+async function getGameIDCounter() {
+    const gameIDCounter = await gamesStatus.findOne({name: "gameIDCounter"});
+    return gameIDCounter.gameIDCounter;
+
 }
 
 async function incrementGameIDCounter() {
     await gamesStatus.updateOne({name: "gameIDCounter"}, {$inc: {gameIDCounter: 1}});
 }
 
-function getWins() {
-    return gamesStatus.findOne({name: "wins"}).wins;
+async function getWins() {
+    const wins = await gamesStatus.findOne({name: "wins"});
+    return wins.wins;
 }
 
 async function incrementWins() {
     await gamesStatus.updateOne({name: "wins"}, {$inc: {wins: 1}});
 }
 
-function getLosses() {
-    return gamesStatus.findOne({name: "losses"}).losses;
+async function getLosses() {
+    const losses = await gamesStatus.findOne({name: "losses"});
+    return losses.losses;
 }
 
 async function incrementLosses() {
@@ -60,7 +64,7 @@ async function incrementLosses() {
 }
 
 function getGames() {
-    return games.find({});
+    return games.find({}).toArray();
 }
 
 async function updateGames(newGames) {
@@ -68,7 +72,7 @@ async function updateGames(newGames) {
     await games.insertMany(newGames);
 }
 
-modeule.exports = {
+module.exports = {
     getUser,
     getUserByToken,
     addUser,

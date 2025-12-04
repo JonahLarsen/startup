@@ -8,8 +8,6 @@ require("dotenv").config();
 
 const authCookieName = "token";
 
-let games = [];
-
 const app = express();
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
@@ -24,7 +22,7 @@ let apiRouter = express.Router();
 app.use("/api", apiRouter);
 
 apiRouter.get("/gameIDCounter", async (req, res) => {
-    const gameIDCounter = DB.getGameIDCounter()
+    const gameIDCounter = await DB.getGameIDCounter()
     res.send({gameIDCounter: gameIDCounter});
 });
 
@@ -34,7 +32,7 @@ apiRouter.put("/gameIDCounter/increment", async (req, res) => {
 });
 
 apiRouter.get("/wins", async (req, res) => {
-    const wins = DB.getWins
+    const wins = await DB.getWins();
     res.send({wins: wins});
 })
 
@@ -44,7 +42,7 @@ apiRouter.put("/wins/increment", async (req, res) => {
 })
 
 apiRouter.get("/losses", async (req, res) => {
-    const losses = DB.getLosses();
+    const losses = await DB.getLosses();
     res.send({losses: losses});
 })
 
@@ -110,13 +108,20 @@ const verifyAuth = async (req, res, next) => {
     // }
 };
 
-apiRouter.get("/games", verifyAuth, (req, res) => {
-    const games = DB.getGames();
-    res.send(games);
+apiRouter.get("/games", verifyAuth, async (req, res) => {
+    const games = await DB.getGames();
+    // console.log(games);
+    if (games) {
+        res.send(games);
+    } else {
+        res.send([]);
+    }
 });
 
 apiRouter.post("/game", verifyAuth, async (req, res) => {
+    // console.log(req.body);
     const games = await updateGames(req.body);
+    console.log(games);
     res.send(games);
 });
 

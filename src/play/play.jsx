@@ -55,7 +55,9 @@ export function Play(props) {
             },
             body: JSON.stringify(games),
         })
-            .then(res => res.json())
+            .then(res => {
+                console.log("response ", res);
+                return res.json()})
             .then(message => {
                 console.log("updated games:", message);
             })
@@ -208,6 +210,7 @@ export function Play(props) {
         fetch("/api/games")
             .then((response) => response.json())
             .then((games) => {
+                console.log(games);
                 setGameList(games);
                 if (games.length > 0) {
                     setCurrentGame(games[0]);
