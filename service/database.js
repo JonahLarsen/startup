@@ -50,3 +50,11 @@ function getWins() {
 async function incrementWins() {
     await gamesStatus.updateOne({name: "wins"}, {$inc: {wins: 1}});
 }
+
+function getLosses() {
+    return gamesStatus.findOne({name: "losses"}).losses;
+}
+
+async function incrementLosses() {
+    await gamesStatus.updateOne({name: "losses"}, {$inc: {losses: 1}});
+}

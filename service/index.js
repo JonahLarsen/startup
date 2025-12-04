@@ -9,7 +9,6 @@ require("dotenv").config();
 const authCookieName = "token";
 
 let games = [];
-let wins = 0;
 let losses = 0;
 
 const app = express();
@@ -46,11 +45,12 @@ apiRouter.put("/wins/increment", async (req, res) => {
 })
 
 apiRouter.get("/losses", async (req, res) => {
+    const losses = DB.getLosses();
     res.send({losses: losses});
 })
 
 apiRouter.put("/losses/increment", async (req, res) => {
-    losses++;
+    await DB.incrementLosses();
     res.send({LossStatus: "Incremented"});
 })
 
