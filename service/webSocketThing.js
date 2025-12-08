@@ -6,9 +6,20 @@ function webSocketThing(httpServer) {
     socketServer.on("connection", (socket) => {
         socket.isAlive = true;
 
-        socket.on("message", function message(data) {
+        socket.on("message", function tallies(data) {
+            const tally = JSON.parse(data.toString());
+
+            if (tally.type === 'vote') {
+                votes[tally.option] += 1
+            }
+
+            const responseMessage = JSON.stringify({
+                type: 'vote_update',
+                tallies: votes
+            });
+
             socketServer.clients.forEach((client) => {
-                if (client !== socket && client.readyState === WebSocket.OPEN) {
+                if (client.readyState === WebSocket.OPEN) {
                     client.send(data);
                 }
             });
