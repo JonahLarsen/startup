@@ -77,7 +77,7 @@ export function Games() {
             {wins === losses && 
                 <div className="image_div"><img className="gameImg" src="img/equal_record.png" alt="Image of a yellow equals sign to indicated a equal amount of wins and losses" /></div>
             }
-            <GameVotes webSocket={new websocketClient}/>
+            <GameVotes/>
                 
             
         </main>
