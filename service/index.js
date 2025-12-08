@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const uuid = require("uuid");
 const OpenAI = require("openai");
 const DB = require("./database.js");
+const {webSocketThing} = require("./webSocketThing.js")
 require("dotenv").config();
 
 const authCookieName = "token";
@@ -163,6 +164,8 @@ function setAuthCookie(res, authToken) {
     });
 }
 
-app.listen(port, () => {
+const httpService = app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
+
+webSocketThing(httpService);
