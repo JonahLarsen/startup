@@ -13,7 +13,9 @@ class websocketClient {
         }
 
         this.socket.onmessage = async (event) => {
-
+            const text = await event.data.text;
+            const gamestatus = JSON.parse(text);
+            this.notifyObservers('receieved', 'updated person', 'done');
         }
 
         this.socket.onclose = (event) => {
