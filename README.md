@@ -110,8 +110,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Backend listens for WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Frontend makes WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
-- [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+- [x] **Backend listens for WebSocket connection** - in service/webSocketThing.js waits for updated vote tallies and sends them back to each client
+- [x] **Frontend makes WebSocket connection** - in games/websocketClient.js connect to websocket on server and can send votes
+- [x] **Data sent over WebSocket connection** - Client sends votes and server sends vote_updates
+- [x] **WebSocket data displayed** - GameVotes component lets users vote and displays vote tallies to users.
+- [x] **Application is fully functional** - App works including websocket.
