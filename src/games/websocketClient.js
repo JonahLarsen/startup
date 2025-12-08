@@ -1,6 +1,6 @@
 
 
-class websocketClient {
+export class websocketClient {
     observers = []
     connected = false;
 

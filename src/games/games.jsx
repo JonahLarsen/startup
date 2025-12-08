@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./games.css"
 import { GameVotes } from "./gameVotes";
+import { websocketClient } from "./websocketClient";
 
 export function Games() {
     const [gameList, setGameList] = useState([]);
@@ -76,7 +77,7 @@ export function Games() {
             {wins === losses && 
                 <div className="image_div"><img className="gameImg" src="img/equal_record.png" alt="Image of a yellow equals sign to indicated a equal amount of wins and losses" /></div>
             }
-            <GameVotes />
+            <GameVotes webSocket={new websocketClient}/>
                 
             
         </main>

@@ -4,7 +4,7 @@ import React from "react";
 export function GameVotes(props) {
 
     function sendVote() {
-        
+        props.webSocket
     }
     
     return (
@@ -21,7 +21,7 @@ export function GameVotes(props) {
                 <option value="Bottom-Middle">Bottom Middle</option>
                 <option value="Bottom-Right">Bottom Right</option>
             </select>
-            <button onClick={sendVote}></button>
+            <button onClick={sendVote}>Send Vote</button>
         </div>
     )
 }
