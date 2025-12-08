@@ -31,4 +31,8 @@ class websocketClient {
         this.observers.push(observer);
     }
 
+    notifyObservers(event, from, msg) {
+        this.observers.forEach((observer) => observer({event, from, msg}));
+    }
+
 }
