@@ -14,9 +14,11 @@ export function GameVotes() {
                                             BottomMiddle: 0,
                                             BottomRight: 0
                                         });
+    const [webSocketService, setWebSocketService] = useState(null);
 
     useEffect(() => {  
-        const webSocket = new websocketClient(setTallies);
+        const webSocket = new websocketClient(setTallies)
+        setWebSocketService(webSocket);
 
         return () => {
             webSocket.socket.close();
@@ -26,7 +28,7 @@ export function GameVotes() {
 
     function sendVote() {
         const selectedValue = document.getElementById('startSpot').value;
-        webSocket.sendVote(selectedValue);
+        webSocketService.sendVote(selectedValue);
     }
     
     return (

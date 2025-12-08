@@ -11,8 +11,8 @@ export class websocketClient {
 
             if (message.type === 'vote_update') {
                 const tallies = message.tallies;
+                updateTallies(tallies);
             }
-            updateTallies(tallies);
         }
     }
 
