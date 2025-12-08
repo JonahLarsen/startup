@@ -26,7 +26,6 @@ export function GameVotes() {
 
     function sendVote() {
         const selectedValue = document.getElementById('startSpot').value;
-
         webSocket.sendVote(selectedValue);
     }
     
@@ -44,7 +43,55 @@ export function GameVotes() {
                 <option value="BottomMiddle">Bottom Middle</option>
                 <option value="BottomRight">Bottom Right</option>
             </select>
-            <button onClick={sendVote}>Send Vote</button>
+            <button onClick={sendVote}>Send Vote</button><br />
+            <br />
+            <table>
+                <thead>
+                    <tr>
+                        <td>Spot</td>
+                        <td>Votes</td>
+                    </tr>   
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Top Left</td>
+                        <td>{tallies.TopLeft}</td>
+                    </tr>
+                    <tr>
+                        <td>Top Middle</td>
+                        <td>{tallies.TopMiddle}</td>
+                    </tr>
+                    <tr>
+                        <td>Top Right</td>
+                        <td>{tallies.TopRight}</td>
+                    </tr>
+                    <tr>
+                        <td>Middle Left</td>
+                        <td>{tallies.MiddleLeft}</td>
+                    </tr>
+                    <tr>
+                        <td>Middle Middle</td>
+                        <td>{tallies.MiddleMiddle}</td>
+                    </tr>
+                    <tr>
+                        <td>Middle Right</td>
+                        <td>{tallies.MiddleRight}</td>
+                    </tr>
+                    <tr>
+                        <td>Bottom Left</td>
+                        <td>{tallies.BottomLeft}</td>
+                    </tr>
+                    <tr>
+                        <td>Bottom Middle</td>
+                        <td>{tallies.BottomMiddle}</td>
+                    </tr>
+                    <tr>
+                        <td>Bottom Right</td>
+                        <td>{tallies.BottomRight}</td>
+                    </tr>
+
+                </tbody>
+            </table>
         </div>
     )
 }
