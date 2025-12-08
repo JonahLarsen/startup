@@ -28,3 +28,5 @@ function webSocketThing(httpServer) {
         });
     }, 10000)
 }
+
+module.exports = { webSocketThing };
