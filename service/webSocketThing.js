@@ -18,6 +18,13 @@ function webSocketThing(httpServer) {
     socketServer.on("connection", (socket) => {
         socket.isAlive = true;
 
+        const initialConnectUpdate = JSON.stringify({
+            type: 'vote_update',
+            tallies: votes
+        });
+
+        socket.send(initialConnectUpdate);
+
         socket.on("message", function tallies(data) {
             const tally = JSON.parse(data.toString());
 
