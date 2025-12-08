@@ -3,6 +3,18 @@ const {WebSocketServer} = require("ws");
 function webSocketThing(httpServer) {
     const socketServer = new WebSocketServer({ server: httpServer });
 
+    const votes = {
+        TopLeft: 0,
+        TopMiddle: 0,
+        TopRight: 0,
+        MiddleLeft: 0,
+        MiddleMiddle: 0,
+        MiddleRight: 0,
+        BottomLeft: 0,
+        BottomMiddle: 0,
+        BottomRight: 0
+    };
+
     socketServer.on("connection", (socket) => {
         socket.isAlive = true;
 
@@ -20,7 +32,7 @@ function webSocketThing(httpServer) {
 
             socketServer.clients.forEach((client) => {
                 if (client.readyState === WebSocket.OPEN) {
-                    client.send(data);
+                    client.send(responseMessage);
                 }
             });
         });

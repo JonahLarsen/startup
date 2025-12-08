@@ -16,6 +16,19 @@ export class websocketClient {
         }
     }
 
+    sendVote(option) {
+        if (this.socket.readyState === WebSocket.OPEN) {
+            const message = JSON.stringify({
+                type: 'vote',
+                option: option
+            });
+
+            this.socket.send(message);
+        } else {
+            console.log("socket not open");
+        }
+    }
+
     sendMessage(name, msg) {
         this.notifyObservers('sent', 'me', msg);
         this.socket.send(JSON.stringify({ name, msg }));
